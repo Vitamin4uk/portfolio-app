@@ -8,6 +8,8 @@ import { SiRedux } from "react-icons/si";
 import { LuFigma } from "react-icons/lu";
 import { FaWindows } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const skills = [
   {
@@ -50,7 +52,18 @@ const AllSkills = () => {
       <div className="flex items-center justify-center relative gap-2 max-w-[1200px] mx-auto">
         {skills.map((item, index) => {
           return (
-            <SingleSkill key={index} text={item.skill} imgSvg={<item.icon />} />
+            <motion.div
+              variants={fadeIn("up", `0.${index}`)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0 }}
+            >
+              <SingleSkill
+                key={index}
+                text={item.skill}
+                imgSvg={<item.icon />}
+              />
+            </motion.div>
           );
         })}
       </div>
